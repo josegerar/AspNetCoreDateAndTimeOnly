@@ -61,8 +61,25 @@ public static class EfCoreExtensions
         }
     }
 
+    public static int? DatePart(this DateTime? date, string datePartArg) =>
+        throw new InvalidOperationException($"{nameof(DatePart)} cannot be called client side.");
+
     public static ModelBuilder AddSqlFunctions(this ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDbFunction(() => DatePart(default, default))
+           .HasTranslation(args =>
+                    new SqlFunctionExpression("DATEPART",
+                        new[]                            {
+                                new SqlFragmentExpression((args.ToArray()[1] as SqlConstantExpression).Value.ToString()),
+                                args.ToArray()[0]
+                        },
+                        true,
+                        new[] { false, false },
+                        typeof(int?),
+                        null
+                    )
+                );
+
         modelBuilder.HasDbFunction(() => DateAndTimeOnlyExtensions.ToDateOnly(default))
                 .HasTranslation(args => new SqlFunctionExpression(
                     functionName: "CONVERT",
