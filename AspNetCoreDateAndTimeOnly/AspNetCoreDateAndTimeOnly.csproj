@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+
+		<DotNet6Version>6.0.0</DotNet6Version>
+		<DotNet7Version>7.0.0</DotNet7Version>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNet6Version)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNet7Version)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+</Project>

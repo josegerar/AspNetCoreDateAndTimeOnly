@@ -1,0 +1,16 @@
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
+
+namespace AspNetCoreDateAndTimeOnly.Converters;
+
+public class NullableDateOnlyEFCoreConverter : ValueConverter<DateOnly?, DateTime?>
+{
+    public NullableDateOnlyEFCoreConverter() : base(
+        d => d == null
+            ? null
+            : new DateTime?(d.Value.ToDateTime(TimeOnly.MinValue)),
+        d => d == null
+            ? null
+            : new DateOnly?(DateOnly.FromDateTime(d.Value)))
+    { }
+}
