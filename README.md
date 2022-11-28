@@ -18,6 +18,21 @@ builder.Services.AddDbContext<TContext>(options =>
             options.AddSuportDateAndTimeSqlServer();
         });
 ```
+In the `OnModelCreating` of the `DbContext` use the extension function `AddSqlFunctions`.
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.AddSqlFunctions();
+    }
+```
+You can use the `ToDateOnly` extension function in queries to compare Datetime with DateOnly.
+
+```csharp
+queryable.Where(t => t.DatetimeProperty.ToDateOnly() == dateOnlyParameter)
+```
+
 ## .Net 6
 In net 6 you have to add a TypeDescriptor to the MvcBuilder with the `UseDateOnlyTimeOnlyStringConverters` extension and converters with the `AddDateAndTimeJsonConverters` extension in `AddJsonOptions` of the MvcBuilder.
 
