@@ -1,6 +1,3 @@
-[![Nuget version](https://www.nuget.org/Content/gallery/img/default-package-icon.svg)](https://www.nuget.org/packages/AspNetCoreDateAndTimeOnly/)
-[![Nuget downloads](https://www.nuget.org/Content/gallery/img/default-package-icon.svg)](https://www.nuget.org/packages/AspNetCoreDateAndTimeOnly/)
-
 # AspNetCoreDateAndTimeOnly
 A library that supports DateOnly and TimeOnly data types for AspNetCore.
 
