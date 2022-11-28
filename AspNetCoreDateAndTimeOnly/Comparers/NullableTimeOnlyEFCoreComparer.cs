@@ -3,9 +3,9 @@
 using System;
 namespace AspNetCoreDateAndTimeOnly.Comparers;
 
-public class NullableTimeOnlyEFCoreComparer : ValueComparer<TimeOnly?>
+internal class NullableTimeOnlyEFCoreComparer : ValueComparer<TimeOnly?>
 {
-    public NullableTimeOnlyEFCoreComparer() : base(
+    internal NullableTimeOnlyEFCoreComparer() : base(
         (d1, d2) => d1 == d2 && d1.GetValueOrDefault().Ticks == d2.GetValueOrDefault().Ticks,
         d => d.GetHashCode())
     {

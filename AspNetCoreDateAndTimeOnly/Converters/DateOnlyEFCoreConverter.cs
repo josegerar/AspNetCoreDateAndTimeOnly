@@ -3,9 +3,9 @@ using System;
 
 namespace AspNetCoreDateAndTimeOnly.Converters;
 
-public class DateOnlyEFCoreConverter : ValueConverter<DateOnly, DateTime>
+internal class DateOnlyEFCoreConverter : ValueConverter<DateOnly, DateTime>
 {
-    public DateOnlyEFCoreConverter() :
+    internal DateOnlyEFCoreConverter() :
         base(d => d.ToDateTime(TimeOnly.MinValue), dt => DateOnly.FromDateTime(dt))
     {
     }

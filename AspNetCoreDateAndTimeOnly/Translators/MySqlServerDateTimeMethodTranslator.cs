@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ public class MySqlServerDateTimeMethodTranslator : IMethodCallTranslator
         {
             _methodInfoDatePartMapping.Add(item.Method, item.Value);
         }
-
+        
     }
 
     public SqlExpression Translate(SqlExpression instance, MethodInfo method,

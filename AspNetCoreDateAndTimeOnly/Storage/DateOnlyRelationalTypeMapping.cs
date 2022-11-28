@@ -5,7 +5,7 @@ using System;
 
 namespace AspNetCoreDateAndTimeOnly.Storage;
 
-public sealed class DateOnlyRelationalTypeMapping : RelationalTypeMapping
+internal class DateOnlyRelationalTypeMapping : RelationalTypeMapping
 {
     internal DateOnlyRelationalTypeMapping(Type type, ValueConverter converter, ValueComparer comparer)
         : this(

@@ -3,9 +3,9 @@ using System;
 
 namespace AspNetCoreDateAndTimeOnly.Converters;
 
-public class NullableTimeOnlyEFCoreConverter : ValueConverter<TimeOnly?, TimeSpan?>
+internal class NullableTimeOnlyEFCoreConverter : ValueConverter<TimeOnly?, TimeSpan?>
 {
-    public NullableTimeOnlyEFCoreConverter() : base(
+    internal NullableTimeOnlyEFCoreConverter() : base(
         d => d == null
             ? null
             : new TimeSpan?(d.Value.ToTimeSpan()),
