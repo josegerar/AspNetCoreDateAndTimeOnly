@@ -31,3 +31,8 @@ builder.Services.AddControllers(options =>
             options.JsonSerializerOptions.Converters.AddDateAndTimeJsonConverters();
         });
 ```
+## Swagger
+Add DateOnly and TimeOnly support for Swagger with the `UseDateOnlyTimeOnlyStringConverters` extension method.
+```csharp
+builder.Services.AddSwaggerGen(c => c.UseDateOnlyTimeOnlyStringConverters());
+```
