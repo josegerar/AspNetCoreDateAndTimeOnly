@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using System.Reflection;
 
 namespace AspNetCoreDateAndTimeOnly.Translators;
@@ -28,7 +29,13 @@ internal class MySqlServerObjectToStringTranslator : IMethodCallTranslator
         IReadOnlyList<SqlExpression> arguments, IDiagnosticsLogger<DbLoggerCategory.Query> logger)
     {
         //SqlServerObjectToStringTranslator
-        return _typeMapping.TryGetValue(instance!.Type, out var storeType)
+
+        if (instance == null || method.Name != nameof(ToString) || arguments.Count != 0)
+        {
+            return null;
+        }
+
+        return _typeMapping.TryGetValue(instance.Type, out var storeType)
                ? _sqlExpressionFactory.Function(
                    "CONVERT",
                    new[] { _sqlExpressionFactory.Fragment(storeType), instance },
