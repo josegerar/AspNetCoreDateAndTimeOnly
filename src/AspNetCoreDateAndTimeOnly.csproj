@@ -6,22 +6,22 @@
 
 		<DotNet6Version>6.0.0</DotNet6Version>
 		<DotNet7Version>7.0.0</DotNet7Version>
-		
+
 		<Title>DateOnly and TimeOnly support in AspNetCore and EntityFrameworkCore</Title>
-		<Authors>Jose Garcia Lopez</Authors>		<Company></Company>
+		<Authors>Jose Garcia Lopez</Authors>
 		<Description>Library with utilities that allow to use the TimeOnly and DateOnly data types in AspNetCore and EntityFrameworkCore. </Description>
 		<PackageProjectUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</RepositoryUrl>
 		<PackageTags>DateOnly;TimeOnly;AspNetCore;EntityFrameworkCore;SqlServer</PackageTags>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		
+
 		<Copyright>Copyright (c) 2022 AspNetCoreDateAndTimeOnly</Copyright>
 	</PropertyGroup>
 
@@ -34,14 +34,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\LICENSE">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
