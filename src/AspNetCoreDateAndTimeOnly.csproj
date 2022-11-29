@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+
+		<DotNet6Version>6.0.0</DotNet6Version>
+		<DotNet7Version>7.0.0</DotNet7Version>
+		
+		<Title>DateOnly and TimeOnly support in AspNetCore and EntityFrameworkCore</Title>
+		<Authors>Jose Garcia Lopez</Authors>		<Company></Company>
+		<Description>Library with utilities that allow to use the TimeOnly and DateOnly data types in AspNetCore and EntityFrameworkCore. </Description>
+		<PackageProjectUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</RepositoryUrl>
+		<PackageTags>DateOnly;TimeOnly;AspNetCore;EntityFrameworkCore;SqlServer</PackageTags>
+		<Version>1.0.4</Version>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<RepositoryType>git</RepositoryType>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		
+		<Copyright>Copyright (c) 2022 AspNetCoreDateAndTimeOnly</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNet6Version)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNet7Version)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>
