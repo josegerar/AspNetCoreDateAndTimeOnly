@@ -34,13 +34,18 @@ queryable.Where(t => t.DatetimeProperty.ToDateOnly() == dateOnlyParameter)
 ```
 
 ## .Net 6
-In net 6 you have to add a TypeDescriptor to the MvcBuilder with the `UseDateOnlyTimeOnlyStringConverters` extension and converters with the `AddDateAndTimeJsonConverters` extension in `AddJsonOptions` of the MvcBuilder.
+In net 6 you have to add a TypeDescriptor to the MvcBuilder with the `UseDateOnlyTimeOnlyStringConverters` extension of the MvcBuilder.
 
 ```csharp
 builder.Services.AddControllers(options =>
         {
             options.UseDateOnlyTimeOnlyStringConverters();
-        })
+        });
+```
+And converters with the `AddDateAndTimeJsonConverters` extension in `AddJsonOptions` of the MvcBuilder of the nuget library `AspNetCoreDateAndTimeOnly.Json`.
+
+```csharp
+builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.Converters.AddDateAndTimeJsonConverters();
