@@ -1,4 +1,5 @@
 ﻿using AspNetCoreDateAndTimeOnly.TranslatorProviders;
+using CSharpNetUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
@@ -77,7 +78,7 @@ public static class EfCoreExtensions
                     )
                 );
 
-        modelBuilder.HasDbFunction(() => DateAndTimeOnlyExtensions.ToDateOnly(default))
+        modelBuilder.HasDbFunction(() => DateExtensions.ToDateOnly(default))
                 .HasTranslation(args => new SqlFunctionExpression(
                     functionName: "CONVERT",
                     arguments: args.Prepend(new SqlFragmentExpression("date")),
@@ -86,7 +87,7 @@ public static class EfCoreExtensions
                     type: typeof(DateOnly),
                     typeMapping: null));
 
-        modelBuilder.HasDbFunction(() => DateAndTimeOnlyExtensions.ToDateOnly(null))
+        modelBuilder.HasDbFunction(() => DateExtensions.ToDateOnly(null))
                 .HasTranslation(args => new SqlFunctionExpression(
                     functionName: "CONVERT",
                     arguments: args.Prepend(new SqlFragmentExpression("date")),

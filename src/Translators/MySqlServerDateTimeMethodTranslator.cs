@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CSharpNetUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
@@ -21,8 +22,8 @@ internal class MySqlServerDateTimeMethodTranslator : IMethodCallTranslator
     {
         _sqlExpressionFactory = sqlExpressionFactory;
         _typeMappingSource = typeMappingSource;
-        var methots = typeof(DateAndTimeOnlyExtensions).GetMethods(BindingFlags.Public | BindingFlags.Static)
-            .Where(m => m.Name == nameof(DateAndTimeOnlyExtensions.ToDateOnly))
+        var methots = typeof(DateExtensions).GetMethods(BindingFlags.Public | BindingFlags.Static)
+            .Where(m => m.Name == nameof(DateExtensions.ToDateOnly))
             .Select(m => new { Method = m, Value = "date" });
         foreach (var item in methots)
         {
@@ -39,7 +40,7 @@ internal class MySqlServerDateTimeMethodTranslator : IMethodCallTranslator
         {
             switch (method.Name)
             {
-                case nameof(DateAndTimeOnlyExtensions.ToDateOnly):
+                case nameof(DateExtensions.ToDateOnly):
                     return _sqlExpressionFactory.Function(
                         "CONVERT",
                         new[] { _sqlExpressionFactory.Fragment("date") },

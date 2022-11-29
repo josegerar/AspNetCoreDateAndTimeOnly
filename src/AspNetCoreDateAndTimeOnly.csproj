@@ -14,7 +14,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</RepositoryUrl>
 		<PackageTags>DateOnly;TimeOnly;AspNetCore;EntityFrameworkCore;SqlServer</PackageTags>
-		<Version>1.0.8</Version>
+		<Version>1.0.9</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -47,6 +47,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CSharpNetUtilities" Version="1.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
