@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using AspNetCoreDateAndTimeOnly.Translators;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace AspNetCoreDateAndTimeOnly.TranslatorProviders;
 
-public class MySqlServerMethodCallTranslatorProvider : SqlServerMethodCallTranslatorProvider
+internal class MySqlServerMethodCallTranslatorProvider : SqlServerMethodCallTranslatorProvider
 {
-    public MySqlServerMethodCallTranslatorProvider(RelationalMethodCallTranslatorProviderDependencies dependencies) : base(dependencies)
+    internal MySqlServerMethodCallTranslatorProvider(RelationalMethodCallTranslatorProviderDependencies dependencies) : base(dependencies)
     {
         var sqlExpressionFactory = dependencies.SqlExpressionFactory;
         var typeMappingSource = dependencies.RelationalTypeMappingSource;
@@ -13,6 +14,7 @@ public class MySqlServerMethodCallTranslatorProvider : SqlServerMethodCallTransl
         AddTranslators(new IMethodCallTranslator[]
         {
            // new MySqlServerDateTimeMethodTranslator(sqlExpressionFactory,typeMappingSource)
+           new MySqlServerObjectToStringTranslator(sqlExpressionFactory),
         });
     }
 }

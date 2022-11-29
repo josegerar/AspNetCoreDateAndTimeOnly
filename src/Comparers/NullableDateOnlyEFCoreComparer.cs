@@ -2,7 +2,6 @@
 
 namespace AspNetCoreDateAndTimeOnly.Comparers;
 
-
 internal class NullableDateOnlyEFCoreComparer : ValueComparer<DateOnly?>
 {
     internal NullableDateOnlyEFCoreComparer() : base(

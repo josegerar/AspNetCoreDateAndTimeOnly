@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace AspNetCoreDateAndTimeOnly.Translators;
 
-public class MySqlServerDateTimeMethodTranslator : IMethodCallTranslator
+internal class MySqlServerDateTimeMethodTranslator : IMethodCallTranslator
 {
     private Dictionary<MethodInfo, string> _methodInfoDatePartMapping = new()
     {
@@ -16,7 +16,7 @@ public class MySqlServerDateTimeMethodTranslator : IMethodCallTranslator
     private readonly ISqlExpressionFactory _sqlExpressionFactory;
     private readonly IRelationalTypeMappingSource _typeMappingSource;
 
-    public MySqlServerDateTimeMethodTranslator(ISqlExpressionFactory sqlExpressionFactory,
+    internal MySqlServerDateTimeMethodTranslator(ISqlExpressionFactory sqlExpressionFactory,
         IRelationalTypeMappingSource typeMappingSource)
     {
         _sqlExpressionFactory = sqlExpressionFactory;

@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace AspNetCoreDateAndTimeOnly.Translators;
 
-public class DateOnlyMemberTranslator : IMemberTranslator
+internal class DateOnlyMemberTranslator : IMemberTranslator
 {
     private static readonly Dictionary<string, string> DatePartMapping = new()
         {
@@ -18,7 +18,7 @@ public class DateOnlyMemberTranslator : IMemberTranslator
         };
 
     private readonly ISqlExpressionFactory _sqlExpressionFactory;
-    public DateOnlyMemberTranslator(ISqlExpressionFactory sqlExpressionFactory)
+    internal DateOnlyMemberTranslator(ISqlExpressionFactory sqlExpressionFactory)
     {
         _sqlExpressionFactory = sqlExpressionFactory;
     }

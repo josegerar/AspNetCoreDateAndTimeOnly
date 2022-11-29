@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AspNetCoreDateAndTimeOnly.TranslatorProviders;
 
-public class MySqlServerTypeMappingSource : SqlServerTypeMappingSource
+internal class MySqlServerTypeMappingSource : SqlServerTypeMappingSource
 {
     private readonly DateOnlyRelationalTypeMapping _date = new(typeof(DateOnly),
         new DateOnlyEFCoreConverter(), new DateOnlyEfCoreComparer());
@@ -21,7 +21,7 @@ public class MySqlServerTypeMappingSource : SqlServerTypeMappingSource
         new NullableTimeOnlyEFCoreConverter(), new NullableTimeOnlyEFCoreComparer());
 
     private readonly Dictionary<Type, RelationalTypeMapping> _clrTypeMappings;
-    public MySqlServerTypeMappingSource(TypeMappingSourceDependencies dependencies,
+    internal MySqlServerTypeMappingSource(TypeMappingSourceDependencies dependencies,
         RelationalTypeMappingSourceDependencies relationalDependencies)
         : base(dependencies, relationalDependencies)
     {
