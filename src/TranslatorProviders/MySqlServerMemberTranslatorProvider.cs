@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AspNetCoreDateAndTimeOnly.TranslatorProviders;
 
-internal class MySqlServerMemberTranslatorProvider : SqlServerMemberTranslatorProvider
+public class MySqlServerMemberTranslatorProvider : SqlServerMemberTranslatorProvider
 {
-    internal MySqlServerMemberTranslatorProvider(RelationalMemberTranslatorProviderDependencies dependencies,
+    public MySqlServerMemberTranslatorProvider(RelationalMemberTranslatorProviderDependencies dependencies,
         IRelationalTypeMappingSource typeMappingSource) : base(dependencies, typeMappingSource)
     {
         ISqlExpressionFactory expressionFactory = dependencies.SqlExpressionFactory;
