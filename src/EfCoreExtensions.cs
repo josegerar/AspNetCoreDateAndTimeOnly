@@ -9,6 +9,34 @@ namespace AspNetCoreDateAndTimeOnly;
 
 public static class EfCoreExtensions
 {
+    public static async Task<T?> UseTransaction<T>(this DbContext context, Func<Task<T>> body)
+    {
+        if (body == null)
+        {
+            throw new ArgumentNullException(nameof(body));
+        }
+        using var transaction = context.Database.BeginTransaction();
+        try
+        {
+            var result = await body();
+
+            await context.SaveChangesAsync();
+
+            await transaction.CommitAsync();
+
+            return result;
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
+        finally
+        {
+            await transaction.DisposeAsync();
+        }
+    }
+
     public static async Task UseTransaction(this DbContext context, Func<Task> body)
     {
         if (body == null)
@@ -44,6 +72,7 @@ public static class EfCoreExtensions
         try
         {
             body();
+
             await context.SaveChangesAsync();
 
             await transaction.CommitAsync();
