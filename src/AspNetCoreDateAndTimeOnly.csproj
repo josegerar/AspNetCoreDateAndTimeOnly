@@ -14,7 +14,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</RepositoryUrl>
 		<PackageTags>DateOnly;TimeOnly;AspNetCore;EntityFrameworkCore;SqlServer</PackageTags>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -24,7 +24,7 @@
 
 		<Copyright>Copyright (c) 2022 AspNetCoreDateAndTimeOnly</Copyright>
 
-		<PackageReleaseNotes>Add nullable Datepart function</PackageReleaseNotes>
+		<PackageReleaseNotes>adding aggregation method calls to DateOnly</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">

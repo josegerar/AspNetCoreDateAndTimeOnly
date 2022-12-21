@@ -15,6 +15,7 @@ public class MySqlServerMethodCallTranslatorProvider : SqlServerMethodCallTransl
         {
            // new MySqlServerDateTimeMethodTranslator(sqlExpressionFactory,typeMappingSource)
            new MySqlServerObjectToStringTranslator(sqlExpressionFactory),
+           new DateOnlyMethodTranslator(typeMappingSource,sqlExpressionFactory)
         });
     }
 }
