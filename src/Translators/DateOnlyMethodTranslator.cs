@@ -13,7 +13,7 @@ public class DateOnlyMethodTranslator : IMethodCallTranslator
     {
         { typeof(DateOnly).GetRuntimeMethod(nameof(DateOnly.AddYears), new[] { typeof(int) })!, "year" },
         { typeof(DateOnly).GetRuntimeMethod(nameof(DateOnly.AddMonths), new[] { typeof(int) })!, "month" },
-        { typeof(DateOnly).GetRuntimeMethod(nameof(DateOnly.AddDays), new[] { typeof(double) })!, "day" },
+        { typeof(DateOnly).GetRuntimeMethod(nameof(DateOnly.AddDays), new[] { typeof(int) })!, "day" },
     };
 
     private readonly ISqlExpressionFactory _sqlExpressionFactory;
