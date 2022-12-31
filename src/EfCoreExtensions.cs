@@ -1,8 +1,6 @@
 ﻿using AspNetCoreDateAndTimeOnly.TranslatorProviders;
-using CSharpNetUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AspNetCoreDateAndTimeOnly;
@@ -88,62 +86,17 @@ public static class EfCoreExtensions
         }
     }
 
-    public static int? DatePart(this DateTime? date, string datePartArg) =>
+    public static int? DatePart(this DateTime? date, string datePartArg1) =>
         throw new InvalidOperationException($"{nameof(DatePart)} cannot be called client side.");
 
-    public static int DatePart(this DateTime date, string datePartArg) =>
+    public static int DatePart(this DateTime date, string datePartArg2) =>
         throw new InvalidOperationException($"{nameof(DatePart)} cannot be called client side.");
 
-    public static ModelBuilder AddSqlFunctions(this ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasDbFunction(() => DatePart(null, default!))
-           .HasTranslation(args =>
-                    new SqlFunctionExpression("DATEPART",
-                        new[]                            {
-                                new SqlFragmentExpression((args.ToArray()[1] as SqlConstantExpression)!.Value!.ToString()!),
-                                args.ToArray()[0]
-                        },
-                        true,
-                        new[] { false, false },
-                        typeof(int?),
-                        null
-                    )
-                );
+    public static int? DatePart(this DateOnly? date, string datePartArg3) =>
+        throw new InvalidOperationException($"{nameof(DatePart)} cannot be called client side.");
 
-        modelBuilder.HasDbFunction(() => DatePart(default, default!))
-           .HasTranslation(args =>
-                    new SqlFunctionExpression("DATEPART",
-                        new[]                            {
-                                new SqlFragmentExpression((args.ToArray()[1] as SqlConstantExpression)!.Value!.ToString()!),
-                                args.ToArray()[0]
-                        },
-                        true,
-                        new[] { false, false },
-                        typeof(int),
-                        null
-                    )
-                );
-
-        modelBuilder.HasDbFunction(() => DateExtensions.ToDateOnly(default))
-                .HasTranslation(args => new SqlFunctionExpression(
-                    functionName: "CONVERT",
-                    arguments: args.Prepend(new SqlFragmentExpression("date")),
-                    nullable: true,
-                    argumentsPropagateNullability: new[] { false, true },
-                    type: typeof(DateOnly),
-                    typeMapping: null));
-
-        modelBuilder.HasDbFunction(() => DateExtensions.ToDateOnly(null))
-                .HasTranslation(args => new SqlFunctionExpression(
-                    functionName: "CONVERT",
-                    arguments: args.Prepend(new SqlFragmentExpression("date")),
-                    nullable: true,
-                    argumentsPropagateNullability: new[] { false, true },
-                    type: typeof(DateOnly),
-                    typeMapping: null));
-
-        return modelBuilder;
-    }
+    public static int DatePart(this DateOnly date, string datePartArg4) =>
+        throw new InvalidOperationException($"{nameof(DatePart)} cannot be called client side.");
 
     public static DbContextOptionsBuilder AddSuportDateAndTimeSqlServer(this DbContextOptionsBuilder options)
     {

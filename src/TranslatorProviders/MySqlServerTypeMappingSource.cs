@@ -8,32 +8,45 @@ namespace AspNetCoreDateAndTimeOnly.TranslatorProviders;
 
 public class MySqlServerTypeMappingSource : SqlServerTypeMappingSource
 {
-    private readonly DateOnlyRelationalTypeMapping _date = new(typeof(DateOnly),
-        new DateOnlyEFCoreConverter(), new DateOnlyEfCoreComparer());
+    private readonly Dictionary<Type, RelationalTypeMapping> _clrTypeMappings = new()
+    {
+        {
+            typeof(DateOnly),
+            new DateOnlyRelationalTypeMapping(
+                typeof(DateOnly),
+                new DateOnlyEFCoreConverter(),
+                new DateOnlyEfCoreComparer()
+            )
+        },
+                {
+            typeof(DateOnly?),
+            new DateOnlyRelationalTypeMapping(
+                typeof(DateOnly?),
+                new NullableDateOnlyEFCoreConverter(),
+                new NullableDateOnlyEFCoreComparer()
+            )
+        },
+                {
+            typeof(TimeOnly),
+            new TimeOnlyRelationalTypeMapping(
+                typeof(TimeOnly),
+                new TimeOnlyEFCoreConverter(),
+                new TimeOnlyEfCoreComparer()
+            )
+        },
+                {
+            typeof(TimeOnly?),
+            new TimeOnlyRelationalTypeMapping(
+                typeof(TimeOnly?),
+                new NullableTimeOnlyEFCoreConverter(),
+                new NullableTimeOnlyEFCoreComparer()
+            )
+        },
+    };
 
-    private readonly DateOnlyRelationalTypeMapping _dateNullable = new(typeof(DateOnly?),
-        new NullableDateOnlyEFCoreConverter(), new NullableDateOnlyEFCoreComparer());
-
-    private readonly TimeOnlyRelationalTypeMapping _time = new(typeof(TimeOnly),
-        new TimeOnlyEFCoreConverter(), new TimeOnlyEfCoreComparer());
-
-    private readonly TimeOnlyRelationalTypeMapping _timeNullable = new(typeof(TimeOnly?),
-        new NullableTimeOnlyEFCoreConverter(), new NullableTimeOnlyEFCoreComparer());
-
-    private readonly Dictionary<Type, RelationalTypeMapping> _clrTypeMappings;
     public MySqlServerTypeMappingSource(TypeMappingSourceDependencies dependencies,
         RelationalTypeMappingSourceDependencies relationalDependencies)
-        : base(dependencies, relationalDependencies)
-    {
-        _clrTypeMappings
-            = new Dictionary<Type, RelationalTypeMapping>
-            {
-                { typeof(DateOnly), _date },
-                { typeof(DateOnly?), _dateNullable },
-                { typeof(TimeOnly), _time },
-                { typeof(TimeOnly?), _timeNullable },
-            };
-    }
+        : base(dependencies, relationalDependencies) { }
 
     protected override RelationalTypeMapping? FindMapping(in RelationalTypeMappingInfo mappingInfo)
         => base.FindMapping(mappingInfo) ?? FindRawMapping(mappingInfo)?.Clone(mappingInfo);

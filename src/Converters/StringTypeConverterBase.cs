@@ -35,7 +35,7 @@ public abstract class StringTypeConverterBase<T> : TypeConverter
         }
         return base.CanConvertTo(context, destinationType);
     }
-    public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, 
+    public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture,
         object? value, Type destinationType)
     {
         if (destinationType == typeof(string) && value is T typedValue)

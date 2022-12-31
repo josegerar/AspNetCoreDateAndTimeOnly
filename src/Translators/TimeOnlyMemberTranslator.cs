@@ -27,7 +27,7 @@ internal class TimeOnlyMemberTranslator : IMemberTranslator
         _sqlExpressionFactory = sqlExpressionFactory;
     }
 
-    public SqlExpression? Translate(SqlExpression? instance, MemberInfo member, Type returnType, 
+    public SqlExpression? Translate(SqlExpression? instance, MemberInfo member, Type returnType,
         IDiagnosticsLogger<DbLoggerCategory.Query> logger)
     {
         if (member.DeclaringType == typeof(TimeOnly) && DatePartMappings.TryGetValue(member.Name, out var value))

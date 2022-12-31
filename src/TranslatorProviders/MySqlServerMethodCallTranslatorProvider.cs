@@ -13,7 +13,7 @@ public class MySqlServerMethodCallTranslatorProvider : SqlServerMethodCallTransl
 
         AddTranslators(new IMethodCallTranslator[]
         {
-           // new MySqlServerDateTimeMethodTranslator(sqlExpressionFactory,typeMappingSource)
+           new MySqlServerDateExtensionMethodsTranslator(sqlExpressionFactory,typeMappingSource),
            new MySqlServerObjectToStringTranslator(sqlExpressionFactory),
            new DateOnlyMethodTranslator(typeMappingSource,sqlExpressionFactory)
         });
