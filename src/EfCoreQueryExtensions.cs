@@ -11,10 +11,10 @@ namespace AspNetCoreDateAndTimeOnly;
 
 public static class EfCoreQueryExtensions
 {
-    public async static Task InsertarParametrosPaginacionEnRespuesta<T>(this HttpContext context,
+    public async static Task InsertarParametrosPaginacionEnRespuesta<T>(this HttpContext? context,
     IQueryable<T> queryable, int cantidadRegistrosAMostrar)
-    {//queryable para cualquier entidad, metodo generico
-        if (context == null) { throw new ArgumentNullException(nameof(context)); }
+    {
+        if (context == null) { return; }
 
         //contamos registros de la entidad
         double conteo = await queryable.CountAsync();
