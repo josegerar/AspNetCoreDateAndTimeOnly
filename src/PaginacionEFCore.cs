@@ -1,7 +1,7 @@
 ﻿namespace AspNetCoreDateAndTimeOnly;
 
-public class PaginacionEFCore
+public class EFCorePage
 {
-    public int Pagina { get; set; } = 1;
-    public int CantidadRegistrosPorPagina { get; set; } = 10;
+    public int Page { get; set; } = 1;
+    public int QuantityRecordsPerPage { get; set; } = 10;
 }

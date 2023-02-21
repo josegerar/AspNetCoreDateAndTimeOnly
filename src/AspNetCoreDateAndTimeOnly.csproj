@@ -14,7 +14,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly</RepositoryUrl>
 		<PackageTags>DateOnly;TimeOnly;AspNetCore;EntityFrameworkCore;SqlServer</PackageTags>
-		<Version>1.2.1</Version>
+		<Version>1.3</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -24,7 +24,7 @@
 
 		<Copyright>Copyright (c) 2022 AspNetCoreDateAndTimeOnly</Copyright>
 
-		<PackageReleaseNotes>Move extension methods ToDateOnly, ToDateTime, DatePart as IMethodCallTranslator and delete extension method AddSqlFunctions</PackageReleaseNotes>
+		<PackageReleaseNotes>Rename extension function InsertarParametrosPaginacionEnRespuesta to InsertPageParametersInResponse and extension function Paginar to Paginate</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">

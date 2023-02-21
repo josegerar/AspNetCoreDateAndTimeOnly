@@ -11,26 +11,26 @@ namespace AspNetCoreDateAndTimeOnly;
 
 public static class EfCoreQueryExtensions
 {
-    public async static Task InsertarParametrosPaginacionEnRespuesta<T>(this HttpContext? context,
-    IQueryable<T> queryable, int cantidadRegistrosAMostrar)
+    public async static Task InsertPageParametersInResponse<T>(this HttpContext? context,
+    IQueryable<T> queryable, int quantityRecordsShow)
     {
         if (context == null) { return; }
 
-        //contamos registros de la entidad
+        //we have records of the entity
         double conteo = await queryable.CountAsync();
-        //calculo el total de paginas 1000 registros/10 paginas
-        double totalPaginas = Math.Ceiling(conteo / cantidadRegistrosAMostrar);
+        //I calculate the total number of pages 1000 records/10 pages
+        double totalPaginas = Math.Ceiling(conteo / quantityRecordsShow);
         context.Response.Headers.Add("conteo", conteo.ToString());
         context.Response.Headers.Add("totalPaginas", totalPaginas.ToString());
     }
 
-    public static IQueryable<T> Paginar<T>(this IQueryable<T> queryable, PaginacionEFCore paginacion, bool activarPaginacion = true)
+    public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, EFCorePage paginacion, bool activarPaginacion = true)
     {
         if (activarPaginacion)
         {
             return queryable
-                .Skip((paginacion.Pagina - 1) * paginacion.CantidadRegistrosPorPagina)
-                .Take(paginacion.CantidadRegistrosPorPagina);
+                .Skip((paginacion.Page - 1) * paginacion.QuantityRecordsPerPage)
+                .Take(paginacion.QuantityRecordsPerPage);
         }
         else
         {
