@@ -12,6 +12,7 @@ namespace AspNetCoreDateAndTimeOnly;
 
 public static class EfCoreQueryExtensions
 {
+
     public async static Task InsertPageParametersInResponse<T>(this HttpContext? context,
     IQueryable<T> queryable, int quantityRecordsShow)
     {
@@ -21,8 +22,8 @@ public static class EfCoreQueryExtensions
         double count = await queryable.CountAsync();
         //I calculate the total number of pages 1000 records/10 pages
         double totalPages = Math.Ceiling(count / quantityRecordsShow);
-        context.Response.Headers.Add(Constants.TotalPages, count.ToString());
-        context.Response.Headers.Add(Constants.TotalRecords, totalPages.ToString());
+        context.Response.Headers.Add(Constants.TotalRecords, count.ToString());
+        context.Response.Headers.Add(Constants.TotalPages, totalPages.ToString());
     }
 
     public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, EFCorePage paginacion, bool activarPaginacion = true)
