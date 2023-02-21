@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CSharpNetUtilities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -17,11 +18,11 @@ public static class EfCoreQueryExtensions
         if (context == null) { return; }
 
         //we have records of the entity
-        double conteo = await queryable.CountAsync();
+        double count = await queryable.CountAsync();
         //I calculate the total number of pages 1000 records/10 pages
-        double totalPaginas = Math.Ceiling(conteo / quantityRecordsShow);
-        context.Response.Headers.Add("conteo", conteo.ToString());
-        context.Response.Headers.Add("totalPaginas", totalPaginas.ToString());
+        double totalPages = Math.Ceiling(count / quantityRecordsShow);
+        context.Response.Headers.Add(Constants.TotalPages, count.ToString());
+        context.Response.Headers.Add(Constants.TotalRecords, totalPages.ToString());
     }
 
     public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, EFCorePage paginacion, bool activarPaginacion = true)
